@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nan House Rouen — Le meilleur Naan de Rouen</title>
+<meta name="description" content="Nan House Rouen — Pain naan maison cuit au four tandoor, tacos, plats indiens, grillades. Ingrédients frais, livraison rapide dans tout Rouen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1A7A65;
+    --accent-dark: #14634F;
+    --accent-light: #2A9B7E;
+    --bg: #101010;
+    --surface: #1a1a1a;
+    --text: #FAFAF8;
+    --muted: #BDBDBD;
+    --dim: #666;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; background: var(--bg);
+    font-family: 'Inter', sans-serif; color: var(--text);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased; scroll-behavior: smooth;
+  }
+  html { scroll-behavior: smooth; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-light); }
+  h1, h2, h3, h4 { margin: 0; }
+  img { max-width: 100%; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+  /* Utility container */
+  .wrap { max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    padding: 16px 40px;
+    padding-left: max(40px, env(safe-area-inset-left));
+    padding-right: max(40px, env(safe-area-inset-right));
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(16,16,16,0); backdrop-filter: none;
+  }
+  .header.scrolled { background: rgba(16,16,16,0.85); backdrop-filter: blur(20px); }
+  .logo-pill {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(26,122,101,0.12); border: 1px solid rgba(26,122,101,0.25);
+    border-radius: 100px; padding: 6px 18px 6px 6px;
+  }
+  .logo-badge {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 13px; color: var(--text); letter-spacing: -0.5px;
+  }
+  .logo-text { font-weight: 800; font-size: 16px; letter-spacing: -0.3px; color: var(--text); }
+  .nav { display: flex; align-items: center; gap: 32px; font-size: 14px; font-weight: 500; }
+  .nav-link { cursor: pointer; color: var(--text); transition: color 0.2s; background: none; border: 0; font: inherit; }
+  .nav-link:hover { color: var(--accent); }
+  .cart-btn { position: relative; cursor: pointer; background: none; border: 0; padding: 0; line-height: 0; }
+  .cart-count {
+    position: absolute; top: -8px; right: -8px; background: var(--accent); color: var(--bg);
+    font-size: 11px; font-weight: 700; width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .btn-cta {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer;
+    transition: all 0.3s; letter-spacing: 0.5px; border: 0;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,122,101,0.4); }
+  .menu-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 6px; -webkit-tap-highlight-color: transparent; }
+  .cart-btn, .btn-cta, .nav-link { -webkit-tap-highlight-color: transparent; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 60px 80px; overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, rgba(16,16,16,0.95) 0%, rgba(16,16,16,0.7) 40%, rgba(16,16,16,0.3) 100%);
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.45; }
+  .hero-glow {
+    position: absolute; top: 20%; right: 10%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,122,101,0.15) 0%, transparent 70%);
+    z-index: 1; pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+    width: 100%; max-width: 1400px; margin: 0 auto; gap: 60px;
+  }
+  .hero-content { flex: 1; max-width: 650px; animation: fadeInUp 1s ease-out; }
+  .script-accent { font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--accent); margin-bottom: 8px; }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 90px; line-height: 0.95; margin: 0 0 24px;
+    letter-spacing: 2px; color: var(--text); text-transform: uppercase;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 17px; line-height: 1.7; color: var(--muted); margin: 0 0 40px; max-width: 480px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 16px 36px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: all 0.3s; letter-spacing: 0.5px; border: 0;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(26,122,101,0.4); }
+  .btn-ghost {
+    border: 2px solid rgba(250,250,248,0.2); color: var(--text); padding: 16px 36px; border-radius: 12px;
+    font-weight: 600; font-size: 16px; cursor: pointer; transition: all 0.3s; background: none;
+  }
+  .btn-ghost:hover { border-color: rgba(250,250,248,0.5); background: rgba(250,250,248,0.05); }
+  .hero-card { flex: none; width: 320px; animation: slideInRight 1s ease-out 0.3s both; }
+  .glass-card {
+    background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .stat-row { display: flex; align-items: center; gap: 12px; }
+  .stat-icon {
+    width: 44px; height: 44px; border-radius: 12px; background: rgba(26,122,101,0.15);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .stat-big { font-size: 18px; font-weight: 700; color: var(--text); }
+  .stat-sub { font-size: 13px; color: var(--muted); }
+
+  /* ---------- SECTIONS ---------- */
+  .section { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-head span { font-family: 'Great Vibes', cursive; font-size: 24px; color: var(--accent); display: block; margin-bottom: 4px; }
+  .section-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: 52px; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* Categories */
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .cat-card {
+    position: relative; border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1); aspect-ratio: 1; background: #1a1a1a;
+  }
+  .cat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(26,122,101,0.15); }
+  .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; opacity: 0.7; }
+  .cat-card:hover img { transform: scale(1.06); }
+  .cat-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,16,16,0.9) 0%, transparent 60%); }
+  .cat-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; }
+  .cat-emoji { font-size: 36px; margin-bottom: 8px; }
+  .cat-name { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .cat-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .cat-arrow {
+    position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(26,122,101,0.2); display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+  }
+  .cat-card:hover .cat-arrow { background: var(--accent); }
+
+  /* Menu tabs */
+  .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 24px; border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--muted);
+  }
+  .tab:hover { border-color: rgba(26,122,101,0.5); }
+  .tab.active { background: rgba(26,122,101,0.15); color: var(--accent); }
+
+  /* Menu grid */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .menu-card {
+    background: var(--surface); border-radius: 16px; overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1); border: 1px solid rgba(255,255,255,0.05); cursor: pointer;
+  }
+  .menu-card:hover { transform: translateY(-4px); border-color: rgba(26,122,101,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .menu-media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #151515; }
+  .menu-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .menu-card:hover .menu-media img { transform: scale(1.05); }
+  .badge-popular {
+    position: absolute; top: 12px; left: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: var(--bg); padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .menu-body { padding: 20px; }
+  .menu-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 12px; }
+  .menu-name { font-size: 18px; font-weight: 700; margin: 0; letter-spacing: -0.3px; }
+  .menu-price { font-size: 18px; font-weight: 800; color: var(--accent); white-space: nowrap; }
+  .menu-desc { font-size: 13px; color: var(--muted); margin: 0 0 16px; line-height: 1.5; }
+  .menu-foot { display: flex; justify-content: space-between; align-items: center; }
+  .menu-rating { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--muted); }
+  .add-chip {
+    background: rgba(26,122,101,0.15); color: var(--accent); padding: 8px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; transition: all 0.3s;
+  }
+  .menu-card:hover .add-chip { background: var(--accent); color: var(--bg); }
+
+  /* Naan banner */
+  .banner { position: relative; padding: 80px 60px; overflow: hidden; }
+  .banner-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
+  .banner-text { flex: 1; }
+  .banner-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 52px; margin: 0 0 16px; letter-spacing: 2px; text-transform: uppercase; }
+  .banner-text p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 460px; margin: 0; }
+  .banner-img { flex: none; width: 500px; border-radius: 20px; overflow: hidden; }
+  .banner-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Features */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .feature-card {
+    background: linear-gradient(135deg, rgba(26,122,101,0.08), rgba(26,122,101,0.02));
+    border: 1px solid rgba(26,122,101,0.15); border-radius: 20px; padding: 40px; text-align: center; transition: all 0.4s;
+  }
+  .feature-card:hover { transform: translateY(-6px); border-color: rgba(26,122,101,0.3); }
+  .feature-icon {
+    width: 72px; height: 72px; border-radius: 20px; background: rgba(26,122,101,0.15);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+  }
+  .feature-card h3 { font-size: 20px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.3px; }
+  .feature-card p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .map-box { background: var(--surface); border-radius: 20px; overflow: hidden; aspect-ratio: 16/10; }
+  .map-box iframe { width: 100%; height: 100%; border: 0; filter: invert(0.9) hue-rotate(180deg) brightness(0.7) contrast(1.2); }
+  .info-col { display: flex; flex-direction: column; gap: 24px; }
+  .info-card {
+    background: var(--surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+    padding: 28px; display: flex; align-items: center; gap: 16px;
+  }
+  .info-icon {
+    width: 52px; height: 52px; border-radius: 14px; background: rgba(26,122,101,0.15);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .info-label { font-size: 13px; color: var(--dim); margin-bottom: 4px; }
+  .info-value { font-size: 15px; font-weight: 600; }
+  .btn-route {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 16px 32px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer;
+    text-align: center; transition: all 0.3s; text-decoration: none; display: block;
+  }
+  .btn-route:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(26,122,101,0.4); color: var(--bg); }
+
+  /* Footer */
+  .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 60px; margin-top: 40px; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+  .footer h4 { font-size: 13px; font-weight: 700; color: var(--text); margin: 0 0 16px; letter-spacing: 1px; text-transform: uppercase; }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: var(--dim); }
+  .footer-links span { cursor: pointer; transition: color 0.2s; }
+  .footer-links span:hover { color: var(--accent); }
+  .footer-brand p { font-size: 13px; color: var(--dim); max-width: 280px; line-height: 1.6; margin: 0; }
+  .socials { display: flex; gap: 12px; }
+  .social {
+    width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
+  }
+  .social:hover { background: rgba(26,122,101,0.2); }
+  .footer-bottom {
+    max-width: 1400px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between; font-size: 12px; color: #555; gap: 16px;
+  }
+  .footer-bottom span:last-child { cursor: pointer; transition: color 0.2s; }
+  .footer-bottom span:last-child:hover { color: var(--muted); }
+
+  /* ---------- MODAL / CONFIGURATOR ---------- */
+  .overlay-root { position: fixed; inset: 0; z-index: 2000; display: none; }
+  .overlay-root.open { display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease-out; }
+  .overlay-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
+  .modal {
+    position: relative; background: var(--surface); border-radius: 24px; width: 90%; max-width: 560px;
+    max-height: 85vh; overflow-y: auto; animation: scaleIn 0.3s ease-out; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .modal-head {
+    position: sticky; top: 0; background: var(--surface); padding: 24px 28px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06); z-index: 1; display: flex; justify-content: space-between;
+    align-items: center; border-radius: 24px 24px 0 0;
+  }
+  .modal-head h3 { font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.5px; }
+  .modal-head p { font-size: 13px; color: var(--dim); margin: 4px 0 0; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex: none; border: 0;
+  }
+  .icon-btn:hover { background: rgba(255,255,255,0.12); }
+  .modal-body { padding: 24px 28px; }
+  .modal-img { border-radius: 16px; overflow: hidden; aspect-ratio: 16/9; margin-bottom: 24px; background: #151515; }
+  .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+  .step { margin-bottom: 28px; }
+  .step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .step-num {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--accent); display: flex;
+    align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--bg);
+  }
+  .step-title { font-size: 15px; font-weight: 700; }
+  .size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .size-opt { padding: 14px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.08); background: transparent; cursor: pointer; text-align: center; transition: all 0.2s; }
+  .size-opt:hover { border-color: rgba(26,122,101,0.5); }
+  .size-opt.sel { border-color: var(--accent); background: rgba(26,122,101,0.1); }
+  .size-label { font-size: 20px; font-weight: 800; color: var(--text); }
+  .size-opt.sel .size-label { color: var(--accent); }
+  .size-desc { font-size: 12px; color: #888; margin-top: 2px; }
+  .size-price { font-size: 16px; font-weight: 700; color: var(--accent); margin-top: 6px; }
+  .chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 10px 18px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.08); background: transparent; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; color: var(--text); }
+  .chip:hover { border-color: rgba(26,122,101,0.5); }
+  .chip.sel { border-color: var(--accent); background: rgba(26,122,101,0.1); color: var(--accent); }
+  .chip.sauce { font-weight: 500; padding: 10px 16px; }
+  .supp-list { display: flex; flex-direction: column; gap: 8px; }
+  .supp-row {
+    display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.08); background: transparent; cursor: pointer; transition: all 0.2s;
+  }
+  .supp-row:hover { border-color: rgba(26,122,101,0.5); }
+  .supp-row.sel { border-color: var(--accent); background: rgba(26,122,101,0.1); }
+  .supp-name { font-size: 14px; font-weight: 500; }
+  .supp-row.sel .supp-name { color: var(--accent); }
+  .supp-price { font-size: 14px; font-weight: 700; color: var(--accent); }
+  .modal-foot {
+    position: sticky; bottom: 0; background: var(--surface); padding: 20px 28px;
+    border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between;
+    align-items: center; border-radius: 0 0 24px 24px;
+  }
+  .modal-total-label { font-size: 12px; color: var(--dim); }
+  .modal-total { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: -1px; }
+  .btn-add {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 14px 32px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.3s; border: 0;
+  }
+  .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,122,101,0.4); }
+
+  /* ---------- CART ---------- */
+  .cart-root { position: fixed; inset: 0; z-index: 1500; display: none; }
+  .cart-root.open { display: flex; justify-content: flex-end; animation: fadeIn 0.2s ease-out; }
+  .cart-scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+  .cart-panel {
+    position: relative; width: 420px; max-width: 90vw; background: var(--surface); height: 100%;
+    display: flex; flex-direction: column; animation: slideInRight 0.3s ease-out; border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .cart-head { padding: 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .cart-head h3 { font-size: 20px; font-weight: 800; margin: 0; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; }
+  .cart-empty { text-align: center; padding: 60px 0; }
+  .cart-empty p { font-size: 15px; color: #555; margin-top: 16px; }
+  .cart-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .cart-thumb { width: 60px; height: 60px; border-radius: 10px; overflow: hidden; flex: none; background: #151515; }
+  .cart-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-body { flex: 1; min-width: 0; }
+  .cart-item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .cart-item-details { font-size: 12px; color: var(--dim); margin-bottom: 8px; }
+  .cart-item-foot { display: flex; justify-content: space-between; align-items: center; }
+  .qty { display: flex; align-items: center; gap: 12px; }
+  .qty-btn { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 600; font-size: 16px; border: 0; color: var(--text); }
+  .qty-btn:hover { background: rgba(255,255,255,0.12); }
+  .qty-val { font-size: 14px; font-weight: 600; min-width: 16px; text-align: center; }
+  .cart-line-total { font-size: 15px; font-weight: 700; color: var(--accent); }
+  .cart-summary { padding: 24px 28px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .sum-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--muted); }
+  .sum-div { height: 1px; background: rgba(255,255,255,0.06); margin: 12px 0; }
+  .sum-total { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 20px; font-weight: 800; }
+  .sum-total span:last-child { color: var(--accent); }
+  .btn-checkout {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer;
+    transition: all 0.3s; border: 0; width: 100%;
+  }
+  .btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,122,101,0.4); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(120px);
+    background: var(--accent); color: var(--bg); padding: 14px 24px; border-radius: 12px; font-weight: 700;
+    font-size: 14px; z-index: 3000; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .hero h1 { font-size: 68px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid { grid-template-columns: 1fr; }
+    .banner-inner { flex-direction: column; }
+    .banner-img { width: 100%; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .section { padding: 90px 40px; }
+  }
+  @media (max-width: 760px) {
+    .header { padding: 12px 16px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+    .nav { gap: 12px; }
+    .nav-link { display: none; }
+    .btn-cta { display: none; }            /* le CTA passe dans le menu tiroir */
+    .menu-toggle { display: flex; }
+    .logo-text { font-size: 15px; }
+    .hero { padding: 100px 20px 56px; min-height: auto; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .hero h1 { font-size: 52px; }
+    .hero p { font-size: 15px; }
+    .hero-actions { width: 100%; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { flex: 1; text-align: center; padding: 15px 20px; }
+    .hero-card { width: 100%; }
+    .hero-glow { display: none; }
+    .section { padding: 64px 20px; }
+    .section-head { margin-bottom: 40px; }
+    .section-head h2, .banner-text h2 { font-size: 38px; }
+    .banner { padding: 56px 20px; }
+    .banner-inner { gap: 32px; }
+    /* onglets du menu : défilement horizontal au lieu de retour à la ligne */
+    .tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -20px 32px; padding: 0 20px 6px; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { flex: none; }
+    .menu-grid { grid-template-columns: 1fr; gap: 18px; }
+    .cat-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .footer { padding: 48px 20px; }
+    .footer-inner { gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .cart-panel { width: 100%; }
+    /* modale en bottom-sheet */
+    .overlay-root.open { align-items: flex-end; }
+    .modal { width: 100%; max-width: 100%; max-height: 92vh; border-radius: 24px 24px 0 0; }
+    .modal-head { border-radius: 24px 24px 0 0; padding: 20px; }
+    .modal-body { padding: 20px; }
+    .modal-foot { padding: 16px 20px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+    .modal-total { font-size: 24px; }
+    .btn-add { padding: 13px 22px; }
+    .size-grid { gap: 8px; }
+    .size-opt { padding: 12px 8px; }
+  }
+  @media (max-width: 420px) {
+    .script-accent { font-size: 22px; }
+    .hero h1 { font-size: 42px; }
+    .section-head h2, .banner-text h2 { font-size: 32px; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; }
+    .glass-card { padding: 24px; }
+  }
+
+  /* Mobile drawer nav */
+  .mobile-nav { position: fixed; inset: 0; z-index: 1200; visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .mobile-nav.open { visibility: visible; opacity: 1; }
+  .mobile-nav .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); }
+  .mobile-nav .panel {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 78%; max-width: 340px; background: var(--surface);
+    padding: 24px 28px 32px; padding-right: max(28px, env(safe-area-inset-right));
+    display: flex; flex-direction: column; gap: 4px; border-left: 1px solid rgba(255,255,255,0.06);
+    transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); overflow-y: auto;
+  }
+  .mobile-nav.open .panel { transform: translateX(0); }
+  .mobile-nav .panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .mobile-nav .panel-head .logo-text { font-size: 16px; }
+  .mobile-nav .panel button.nav-item {
+    background: none; border: 0; color: var(--text); font: inherit; font-size: 18px; font-weight: 600;
+    text-align: left; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav .panel button.nav-item:active { color: var(--accent); }
+  .mobile-nav .drawer-cta {
+    margin-top: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg);
+    padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; border: 0; text-align: center;
+  }
+  .mobile-nav .drawer-close {
+    width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="logo-pill">
+    <div class="logo-badge">NH</div>
+    <span class="logo-text">NAN HOUSE</span>
+  </div>
+  <nav class="nav">
+    <button class="nav-link" data-section="hero">Accueil</button>
+    <button class="nav-link" data-section="menu">Menu</button>
+    <button class="nav-link" data-section="about">À propos</button>
+    <button class="nav-link" data-section="contact">Contact</button>
+    <button class="cart-btn" id="cartBtn" aria-label="Panier">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <div class="cart-count" id="cartCount" style="display:none">0</div>
+    </button>
+    <button class="btn-cta" data-section="menu">COMMANDER</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="scrim" data-close-mobile></div>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="logo-text">NAN HOUSE</span>
+      <button class="drawer-close" data-close-mobile aria-label="Fermer le menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <button class="nav-item" data-section="hero">Accueil</button>
+    <button class="nav-item" data-section="menu">Menu</button>
+    <button class="nav-item" data-section="about">À propos</button>
+    <button class="nav-item" data-section="contact">Contact</button>
+    <button class="drawer-cta" data-section="menu">COMMANDER</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-bg"><img src="uploads/naan house.jpeg" alt="Nan House restaurant"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="script-accent">Saveurs authentiques</div>
+      <h1>Le meilleur<br><span>Naan</span> de Rouen</h1>
+      <p>Des ingrédients frais, préparés à la commande. Pain naan maison cuit au four tandoor. Livraison rapide dans tout Rouen.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" data-section="menu">Commander maintenant</button>
+        <button class="btn-ghost" data-section="menu">Voir le menu</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="glass-card">
+        <div style="display:flex;align-items:center;gap:4px">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg>
+          <span style="font-size:24px;font-weight:800;color:#FAFAF8;margin-left:8px">4.5</span>
+          <span style="font-size:14px;color:#BDBDBD">/5</span>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.1)"></div>
+        <div class="stat-row">
+          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div><div class="stat-big">+186 avis</div><div class="stat-sub">sur Google</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div><div class="stat-big">~30 min</div><div class="stat-sub">livraison moyenne</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <div><div class="stat-big">Rouen</div><div class="stat-sub">et ses alentours</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-head">
+    <span>Nos spécialités</span>
+    <h2>Que désirez-vous ?</h2>
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="section">
+  <div class="section-head">
+    <span>Notre carte</span>
+    <h2>Le Menu</h2>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- NAAN BANNER -->
+<section class="banner">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <span class="script-accent" style="font-size:24px">Notre signature</span>
+      <h2>Le Pain Naan Maison</h2>
+      <p>Pétri à la main et cuit dans notre four tandoor traditionnel. Moelleux à l'intérieur, doré à l'extérieur — la base de toutes nos créations.</p>
+    </div>
+    <div class="banner-img"><img src="uploads/Pain naan.png" alt="Pain naan maison"></div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section id="about" class="section">
+  <div class="section-head">
+    <span>Pourquoi nous choisir</span>
+    <h2>L'excellence à chaque bouchée</h2>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div>
+      <h3>Pain Naan Maison</h3>
+      <p>Pétri et cuit sur place chaque jour dans notre four tandoor traditionnel. Moelleux à l'intérieur, croustillant à l'extérieur.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+      <h3>Produits Frais</h3>
+      <p>Viandes sélectionnées, légumes croquants, sauces maison. Zéro compromis sur la qualité de nos ingrédients.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+      <h3>Livraison Rapide</h3>
+      <p>Recevez votre commande en 30 minutes. Chaud, frais, comme si vous étiez au restaurant.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALISATION -->
+<section id="contact" class="section">
+  <div class="section-head">
+    <span>Nous trouver</span>
+    <h2>Venez nous voir</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="map-box">
+      <iframe src="https://www.google.com/maps?q=6+Rue+Louis+Ricard,+76000+Rouen&output=embed" loading="lazy" title="Carte Nan House Rouen"></iframe>
+    </div>
+    <div class="info-col">
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+        <div><div class="info-label">Adresse</div><div class="info-value">6 Rue Louis Ricard, 76000 Rouen</div></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+        <div><div class="info-label">Téléphone</div><div class="info-value"><a href="tel:+33235083714" style="color:inherit">02 35 08 37 14</a></div></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+        <div><div class="info-label">Horaires</div><div class="info-value">Mar - Lun : 11h00 - 14h30, 18h00 - 02h00</div></div>
+      </div>
+      <a class="btn-route" href="https://www.google.com/maps/dir/?api=1&destination=6+Rue+Louis+Ricard,+76000+Rouen" target="_blank" rel="noopener">Itinéraire</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div class="logo-badge" style="color:#101010">NH</div>
+        <span class="logo-text">NAN HOUSE</span>
+      </div>
+      <p>Le meilleur Naan de Rouen. Ingrédients frais, pain maison, livraison rapide.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <div class="footer-links">
+        <span data-section="hero">Accueil</span>
+        <span data-section="menu">Menu</span>
+        <span data-section="about">À propos</span>
+        <span data-section="contact">Contact</span>
+      </div>
+    </div>
+    <div>
+      <h4>Horaires</h4>
+      <div class="footer-links">
+        <span>Mardi - Lundi</span>
+        <span>11h00 - 14h30 / 18h00 - 02h00</span>
+      </div>
+    </div>
+    <div>
+      <h4>Suivez-nous</h4>
+      <div class="socials">
+        <div class="social"><svg width="18" height="18" viewBox="0 0 24 24" fill="#BDBDBD"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg></div>
+        <div class="social"><svg width="18" height="18" viewBox="0 0 24 24" fill="#BDBDBD"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Nan House Rouen. Tous droits réservés.</span>
+    <span>Mentions légales</span>
+  </div>
+</footer>
+
+<!-- CONFIGURATOR MODAL -->
+<div class="overlay-root" id="configRoot">
+  <div class="overlay-scrim" data-close-config></div>
+  <div class="modal" id="configModal"></div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-root" id="cartRoot">
+  <div class="cart-scrim" data-close-cart></div>
+  <div class="cart-panel" id="cartPanel"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- DATA ----------
+  var MENU = [
+    { id:'naan1', cat:'naan', name:'Naan Kebab', description:'Pain naan maison garni de kebab, crudités et sauce au choix', price:'Dès 7,00€', priceNum:7, image:'uploads/Nan Kebab.png', rating:'4.9', popular:true, hasSizes:true, hasMeats:true },
+    { id:'naan2', cat:'naan', name:'Naan Poulet Curry', description:'Naan garni de poulet curry fondant, crudités fraîches', price:'Dès 7,00€', priceNum:7, image:'uploads/Nan Kebab.png', rating:'4.8', popular:false, hasSizes:true, hasMeats:true },
+    { id:'naan3', cat:'naan', name:'Naan Poulet Tandoori', description:'Poulet tandoori épicé dans un naan moelleux', price:'Dès 7,00€', priceNum:7, image:'uploads/Nan Kebab.png', rating:'4.7', popular:true, hasSizes:true, hasMeats:true },
+    { id:'tacos1', cat:'tacos', name:'Tacos Classique', description:'Galette grillée, viande au choix, frites, fromage fondant, sauce', price:'Dès 6,90€', priceNum:6.9, image:'uploads/Tacos 3 .png', rating:'4.8', popular:true, hasSizes:true, hasMeats:true },
+    { id:'tacos2', cat:'tacos', name:'Tacos XL', description:'Triple viande, frites, cheddar fondu, sauce au choix', price:'9,90€', priceNum:9.9, image:'uploads/Tacos 3 .png', rating:'4.9', popular:true, hasSizes:true, hasMeats:true },
+    { id:'indien1', cat:'indien', name:'Poulet Tikka Massala', description:'Poulet grillé dans une sauce tikka onctueuse, riz basmati, naan fromage', price:'11,90€', priceNum:11.9, image:'uploads/Tika massala.png', rating:'4.9', popular:true, hasSizes:false, hasMeats:false },
+    { id:'indien2', cat:'indien', name:'Butter Chicken', description:'Poulet grillé dans une sauce butter crémeuse et épicée', price:'11,90€', priceNum:11.9, image:'uploads/Tika massala.png', rating:'4.8', popular:false, hasSizes:false, hasMeats:false },
+    { id:'indien3', cat:'indien', name:'Agneau Madras', description:'Agneau mijoté dans une sauce Madras parfumée, riz basmati', price:'12,90€', priceNum:12.9, image:'uploads/Tika massala.png', rating:'4.7', popular:false, hasSizes:false, hasMeats:false },
+    { id:'biryani1', cat:'indien', name:'Biryani Poulet', description:'Riz basmati parfumé aux épices avec poulet tendre', price:'11,90€', priceNum:11.9, image:'uploads/Tika massala.png', rating:'4.8', popular:false, hasSizes:false, hasMeats:false },
+    { id:'kebab1', cat:'kebab', name:'Kebab Classique', description:'Pain frais, viande kebab grillée, salade, tomate, oignon, sauce', price:'Dès 6,50€', priceNum:6.5, image:'uploads/Kebab.png', rating:'4.7', popular:true, hasSizes:true, hasMeats:false },
+    { id:'grillade1', cat:'grillades', name:'Assiette Mixte', description:'2 Wings, 1 Côte d\'Agneau, 1 Brochette, 1 Merguez, 1 Saucisse — crudités et frites', price:'14,00€', priceNum:14, image:'uploads/Kebab.png', rating:'4.9', popular:true, hasSizes:false, hasMeats:false },
+    { id:'grillade2', cat:'grillades', name:'Assiette Chef', description:'1 Côte d\'Agneau, 1 Filet de Poulet, 2 Poulet Tikka, 1 Merguez', price:'18,00€', priceNum:18, image:'uploads/Kebab.png', rating:'4.9', popular:false, hasSizes:false, hasMeats:false },
+    { id:'burger1', cat:'burgers', name:'Cheese Burger', description:'Steak haché, cheddar, salade, tomate, oignon, sauce maison', price:'6,50€', priceNum:6.5, image:'uploads/Kebab.png', rating:'4.6', popular:false, hasSizes:false, hasMeats:false },
+    { id:'burger2', cat:'burgers', name:'Burger House', description:'Notre spécialité — double steak, bacon, cheddar, sauce house', price:'12,90€', priceNum:12.9, image:'uploads/Kebab.png', rating:'4.8', popular:true, hasSizes:false, hasMeats:false },
+    { id:'chapati1', cat:'chapatis', name:'Chapati Crousty', description:'Chapati croustillant garni de viande, fromage et sauce', price:'9,90€', priceNum:9.9, image:'uploads/Tacos 3 .png', rating:'4.7', popular:false, hasSizes:false, hasMeats:false },
+    { id:'chapati2', cat:'chapatis', name:'Chapati The Best', description:'Notre meilleur chapati — triple garniture, fromage fondu', price:'11,90€', priceNum:11.9, image:'uploads/Tacos 3 .png', rating:'4.9', popular:true, hasSizes:false, hasMeats:false }
+  ];
+
+  var CATEGORIES = [
+    { id:'naan', name:'Naan', subtitle:'Dès 7,00€', emoji:'🫓', image:'uploads/Nan Kebab.png' },
+    { id:'tacos', name:'Tacos', subtitle:'Dès 6,90€', emoji:'🌮', image:'uploads/Tacos 3 .png' },
+    { id:'indien', name:'Plats Indiens', subtitle:'Dès 10,90€', emoji:'🍛', image:'uploads/Tika massala.png' },
+    { id:'grillades', name:'Grillades', subtitle:'Dès 8,90€', emoji:'🥩', image:'uploads/Kebab.png' }
+  ];
+
+  var TABS = [
+    { id:'naan', name:'Naan' },
+    { id:'tacos', name:'Tacos' },
+    { id:'indien', name:'Plats Indiens' },
+    { id:'kebab', name:'Kebab' },
+    { id:'grillades', name:'Grillades' },
+    { id:'burgers', name:'Burgers' },
+    { id:'chapatis', name:'Chapatis' }
+  ];
+
+  var ALL_MEATS = ['Kebab','Poulet Curry','Poulet Tandoori','Steak Haché','Merguez','Tenders','Cordon Bleu'];
+  var ALL_SAUCES = ['Algérienne','Blanche','Curry','Harissa','Andalouse','Samouraï','Barbecue','Ketchup','Mayonnaise'];
+  var ALL_SUPPS = [
+    { id:'cheddar', name:'Cheddar', price:'0,50€', priceNum:0.5 },
+    { id:'raclette', name:'Raclette', price:'1,00€', priceNum:1 },
+    { id:'oeuf', name:'Œuf', price:'1,00€', priceNum:1 },
+    { id:'bacon', name:'Bacon', price:'1,00€', priceNum:1 },
+    { id:'fromage', name:'Fromage supplémentaire', price:'0,50€', priceNum:0.5 }
+  ];
+
+  var DELIVERY = 2.5;
+
+  // ---------- STATE ----------
+  var state = {
+    activeTab: 'naan',
+    selectedProductId: null,
+    selectedSize: 'M',
+    selectedMeats: [],
+    selectedSauces: [],
+    selectedSupps: [],
+    cart: []
+  };
+
+  // ---------- HELPERS ----------
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function euro(n) { return n.toFixed(2).replace('.', ',') + '€'; }
+  function esc(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  function selectedProduct() {
+    if (state.selectedProductId) {
+      var found = MENU.filter(function (m) { return m.id === state.selectedProductId; })[0];
+      if (found) return found;
+    }
+    return MENU[0];
+  }
+  function sizeData(prod) {
+    var isTacos = prod.cat === 'tacos';
+    return [
+      { id:'M', label:'M', desc:'1 viande', priceNum: isTacos ? 6.9 : 7 },
+      { id:'L', label:'L', desc:'2 viandes', priceNum: isTacos ? 8.9 : 8 },
+      { id:'XL', label:'XL', desc:'3 viandes', priceNum: isTacos ? 9.9 : 9 }
+    ];
+  }
+
+  // ---------- RENDER: CATEGORIES ----------
+  function renderCategories() {
+    var grid = $('#catGrid');
+    grid.innerHTML = CATEGORIES.map(function (cat) {
+      return '' +
+        '<div class="cat-card" data-cat="' + cat.id + '">' +
+          '<img src="' + esc(cat.image) + '" alt="' + esc(cat.name) + '">' +
+          '<div class="cat-gradient"></div>' +
+          '<div class="cat-info">' +
+            '<div class="cat-emoji">' + cat.emoji + '</div>' +
+            '<div class="cat-name">' + esc(cat.name) + '</div>' +
+            '<div class="cat-sub">' + esc(cat.subtitle) + '</div>' +
+          '</div>' +
+          '<div class="cat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A7A65" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>' +
+        '</div>';
+    }).join('');
+    Array.prototype.forEach.call(grid.querySelectorAll('.cat-card'), function (el) {
+      el.addEventListener('click', function () {
+        state.activeTab = el.dataset.cat;
+        renderTabs();
+        renderMenu();
+        setTimeout(function () { scrollToSection('menu'); }, 60);
+      });
+    });
+  }
+
+  // ---------- RENDER: TABS ----------
+  function renderTabs() {
+    var wrap = $('#tabs');
+    wrap.innerHTML = TABS.map(function (t) {
+      return '<button class="tab' + (t.id === state.activeTab ? ' active' : '') + '" data-tab="' + t.id + '">' + esc(t.name) + '</button>';
+    }).join('');
+    Array.prototype.forEach.call(wrap.querySelectorAll('.tab'), function (el) {
+      el.addEventListener('click', function () {
+        state.activeTab = el.dataset.tab;
+        renderTabs();
+        renderMenu();
+      });
+    });
+  }
+
+  // ---------- RENDER: MENU ----------
+  function renderMenu() {
+    var grid = $('#menuGrid');
+    var filtered = MENU.filter(function (m) { return m.cat === state.activeTab; });
+    if (!filtered.length) filtered = MENU.filter(function (m) { return m.cat === 'naan'; });
+    grid.innerHTML = filtered.map(function (item) {
+      return '' +
+        '<div class="menu-card" data-product="' + item.id + '">' +
+          '<div class="menu-media">' +
+            '<img src="' + esc(item.image) + '" alt="' + esc(item.name) + '">' +
+            (item.popular ? '<div class="badge-popular">POPULAIRE</div>' : '') +
+          '</div>' +
+          '<div class="menu-body">' +
+            '<div class="menu-top">' +
+              '<h3 class="menu-name">' + esc(item.name) + '</h3>' +
+              '<div class="menu-price">' + esc(item.price) + '</div>' +
+            '</div>' +
+            '<p class="menu-desc">' + esc(item.description) + '</p>' +
+            '<div class="menu-foot">' +
+              '<div class="menu-rating"><svg width="14" height="14" viewBox="0 0 20 20" fill="#1A7A65"><path d="M10 1l2.39 4.84L17.3 6.9l-3.65 3.56.86 5.02L10 13.18l-4.51 2.3.86-5.02L2.7 6.9l4.91-.06z"></path></svg><span>' + esc(item.rating) + '</span></div>' +
+              '<div class="add-chip">Ajouter</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+    Array.prototype.forEach.call(grid.querySelectorAll('.menu-card'), function (el) {
+      el.addEventListener('click', function () { openConfigurator(el.dataset.product); });
+    });
+  }
+
+  // ---------- CONFIGURATOR ----------
+  function openConfigurator(pid) {
+    state.selectedProductId = pid;
+    state.selectedSize = 'M';
+    state.selectedMeats = [];
+    state.selectedSauces = [];
+    state.selectedSupps = [];
+    renderConfigurator();
+    $('#configRoot').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeConfigurator() {
+    $('#configRoot').classList.remove('open');
+    if (!$('#cartRoot').classList.contains('open')) document.body.style.overflow = '';
+  }
+  function configuratorTotal() {
+    var prod = selectedProduct();
+    var total;
+    if (prod.hasSizes) {
+      var sz = sizeData(prod).filter(function (x) { return x.id === state.selectedSize; })[0];
+      total = sz ? sz.priceNum : sizeData(prod)[0].priceNum;
+    } else {
+      total = prod.priceNum || 0;
+    }
+    state.selectedSupps.forEach(function (sid) {
+      var sp = ALL_SUPPS.filter(function (x) { return x.id === sid; })[0];
+      if (sp) total += sp.priceNum;
+    });
+    return total;
+  }
+  function renderConfigurator() {
+    var prod = selectedProduct();
+    var modal = $('#configModal');
+    var stepNum = 1;
+
+    var sizesHtml = '';
+    if (prod.hasSizes) {
+      var szList = sizeData(prod).map(function (sz) {
+        return '<div class="size-opt' + (state.selectedSize === sz.id ? ' sel' : '') + '" data-size="' + sz.id + '">' +
+          '<div class="size-label">' + sz.label + '</div>' +
+          '<div class="size-desc">' + sz.desc + '</div>' +
+          '<div class="size-price">' + euro(sz.priceNum) + '</div>' +
+        '</div>';
+      }).join('');
+      sizesHtml = stepBlock(stepNum++, 'Choisir la taille', '<div class="size-grid">' + szList + '</div>');
+    }
+
+    var meatsHtml = '';
+    if (prod.hasMeats) {
+      var mList = ALL_MEATS.map(function (m) {
+        return '<div class="chip' + (state.selectedMeats.indexOf(m) > -1 ? ' sel' : '') + '" data-meat="' + esc(m) + '">' + esc(m) + '</div>';
+      }).join('');
+      meatsHtml = stepBlock(stepNum++, 'Choisir la viande', '<div class="chip-wrap">' + mList + '</div>');
+    }
+
+    var sList = ALL_SAUCES.map(function (sc) {
+      return '<div class="chip sauce' + (state.selectedSauces.indexOf(sc) > -1 ? ' sel' : '') + '" data-sauce="' + esc(sc) + '">' + esc(sc) + '</div>';
+    }).join('');
+    var saucesHtml = stepBlock(stepNum++, 'Choisir les sauces', '<div class="chip-wrap">' + sList + '</div>');
+
+    var suppList = ALL_SUPPS.map(function (sp) {
+      return '<div class="supp-row' + (state.selectedSupps.indexOf(sp.id) > -1 ? ' sel' : '') + '" data-supp="' + sp.id + '">' +
+        '<span class="supp-name">' + esc(sp.name) + '</span>' +
+        '<span class="supp-price">+' + esc(sp.price) + '</span>' +
+      '</div>';
+    }).join('');
+    var suppsHtml = stepBlock(stepNum++, 'Suppléments', '<div class="supp-list">' + suppList + '</div>');
+
+    modal.innerHTML = '' +
+      '<div class="modal-head">' +
+        '<div><h3>' + esc(prod.name) + '</h3><p>Personnalisez votre commande</p></div>' +
+        '<button class="icon-btn" data-close-config><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>' +
+      '</div>' +
+      '<div class="modal-body">' +
+        '<div class="modal-img"><img src="' + esc(prod.image) + '" alt="' + esc(prod.name) + '"></div>' +
+        sizesHtml + meatsHtml + saucesHtml + suppsHtml +
+      '</div>' +
+      '<div class="modal-foot">' +
+        '<div><div class="modal-total-label">Total</div><div class="modal-total">' + euro(configuratorTotal()) + '</div></div>' +
+        '<button class="btn-add" id="addBtn">Ajouter au panier</button>' +
+      '</div>';
+
+    // wire interactions
+    Array.prototype.forEach.call(modal.querySelectorAll('[data-close-config]'), function (el) {
+      el.addEventListener('click', closeConfigurator);
+    });
+    Array.prototype.forEach.call(modal.querySelectorAll('.size-opt'), function (el) {
+      el.addEventListener('click', function () { state.selectedSize = el.dataset.size; renderConfigurator(); });
+    });
+    Array.prototype.forEach.call(modal.querySelectorAll('[data-meat]'), function (el) {
+      el.addEventListener('click', function () { toggleMeat(el.dataset.meat); renderConfigurator(); });
+    });
+    Array.prototype.forEach.call(modal.querySelectorAll('[data-sauce]'), function (el) {
+      el.addEventListener('click', function () { toggleSauce(el.dataset.sauce); renderConfigurator(); });
+    });
+    Array.prototype.forEach.call(modal.querySelectorAll('[data-supp]'), function (el) {
+      el.addEventListener('click', function () { toggleSupp(el.dataset.supp); renderConfigurator(); });
+    });
+    $('#addBtn').addEventListener('click', addToCart);
+  }
+  function stepBlock(num, title, inner) {
+    return '<div class="step"><div class="step-head"><div class="step-num">' + num + '</div><span class="step-title">' + title + '</span></div>' + inner + '</div>';
+  }
+  function toggleMeat(meat) {
+    var max = state.selectedSize === 'M' ? 1 : state.selectedSize === 'L' ? 2 : 3;
+    var arr = state.selectedMeats.slice();
+    var i = arr.indexOf(meat);
+    if (i > -1) { arr.splice(i, 1); }
+    else if (arr.length < max) { arr.push(meat); }
+    else { arr.shift(); arr.push(meat); }
+    state.selectedMeats = arr;
+  }
+  function toggleSauce(sauce) {
+    var arr = state.selectedSauces.slice();
+    var i = arr.indexOf(sauce);
+    if (i > -1) { arr.splice(i, 1); }
+    else if (arr.length < 3) { arr.push(sauce); }
+    state.selectedSauces = arr;
+  }
+  function toggleSupp(supp) {
+    var arr = state.selectedSupps.slice();
+    var i = arr.indexOf(supp);
+    if (i > -1) { arr.splice(i, 1); } else { arr.push(supp); }
+    state.selectedSupps = arr;
+  }
+  function addToCart() {
+    var prod = selectedProduct();
+    var price;
+    if (prod.hasSizes) {
+      var sz = sizeData(prod).filter(function (x) { return x.id === state.selectedSize; })[0];
+      price = sz ? sz.priceNum : prod.priceNum;
+    } else {
+      price = prod.priceNum;
+    }
+    state.selectedSupps.forEach(function (sid) {
+      var sp = ALL_SUPPS.filter(function (x) { return x.id === sid; })[0];
+      if (sp) price += sp.priceNum;
+    });
+    var details = [prod.hasSizes ? state.selectedSize : '']
+      .concat(state.selectedMeats)
+      .concat(state.selectedSauces.slice(0, 2))
+      .filter(Boolean).join(', ');
+    state.cart.push({ name: prod.name, image: prod.image, unitPrice: price, qty: 1, details: details || 'Standard' });
+    closeConfigurator();
+    updateCartCount();
+    renderCart();
+    openCart();
+    showToast('Ajouté au panier ✓');
+  }
+
+  // ---------- CART ----------
+  function openCart() { $('#cartRoot').classList.add('open'); document.body.style.overflow = 'hidden'; renderCart(); }
+  function closeCart() {
+    $('#cartRoot').classList.remove('open');
+    if (!$('#configRoot').classList.contains('open')) document.body.style.overflow = '';
+  }
+  function cartCount() { return state.cart.reduce(function (a, c) { return a + c.qty; }, 0); }
+  function updateCartCount() {
+    var n = cartCount();
+    var badge = $('#cartCount');
+    badge.textContent = n;
+    badge.style.display = n > 0 ? 'flex' : 'none';
+  }
+  function renderCart() {
+    var panel = $('#cartPanel');
+    var sub = state.cart.reduce(function (acc, c) { return acc + c.unitPrice * c.qty; }, 0);
+    var total = sub + (state.cart.length ? DELIVERY : 0);
+
+    var itemsHtml;
+    if (state.cart.length === 0) {
+      itemsHtml = '<div class="cart-empty">' +
+        '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>' +
+        '<p>Votre panier est vide</p></div>';
+    } else {
+      itemsHtml = state.cart.map(function (ci, idx) {
+        return '<div class="cart-item">' +
+          '<div class="cart-thumb"><img src="' + esc(ci.image) + '" alt="' + esc(ci.name) + '"></div>' +
+          '<div class="cart-item-body">' +
+            '<div class="cart-item-name">' + esc(ci.name) + '</div>' +
+            '<div class="cart-item-details">' + esc(ci.details) + '</div>' +
+            '<div class="cart-item-foot">' +
+              '<div class="qty">' +
+                '<button class="qty-btn" data-dec="' + idx + '">−</button>' +
+                '<span class="qty-val">' + ci.qty + '</span>' +
+                '<button class="qty-btn" data-inc="' + idx + '">+</button>' +
+              '</div>' +
+              '<span class="cart-line-total">' + euro(ci.unitPrice * ci.qty) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    var summaryHtml = '';
+    if (state.cart.length) {
+      summaryHtml = '<div class="cart-summary">' +
+        '<div class="sum-row"><span>Sous-total</span><span>' + euro(sub) + '</span></div>' +
+        '<div class="sum-row"><span>Livraison</span><span>' + euro(DELIVERY) + '</span></div>' +
+        '<div class="sum-div"></div>' +
+        '<div class="sum-total"><span>Total</span><span>' + euro(total) + '</span></div>' +
+        '<button class="btn-checkout" id="checkoutBtn">Commander — ' + euro(total) + '</button>' +
+      '</div>';
+    }
+
+    panel.innerHTML = '' +
+      '<div class="cart-head">' +
+        '<h3>Votre panier</h3>' +
+        '<button class="icon-btn" data-close-cart><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>' +
+      '</div>' +
+      '<div class="cart-items">' + itemsHtml + '</div>' +
+      summaryHtml;
+
+    Array.prototype.forEach.call(panel.querySelectorAll('[data-close-cart]'), function (el) {
+      el.addEventListener('click', closeCart);
+    });
+    Array.prototype.forEach.call(panel.querySelectorAll('[data-inc]'), function (el) {
+      el.addEventListener('click', function () { changeQty(parseInt(el.dataset.inc, 10), 1); });
+    });
+    Array.prototype.forEach.call(panel.querySelectorAll('[data-dec]'), function (el) {
+      el.addEventListener('click', function () { changeQty(parseInt(el.dataset.dec, 10), -1); });
+    });
+    var chk = $('#checkoutBtn');
+    if (chk) chk.addEventListener('click', function () { showToast('Commande simulée — merci ! 🎉'); });
+  }
+  function changeQty(idx, delta) {
+    var item = state.cart[idx];
+    if (!item) return;
+    if (delta < 0 && item.qty <= 1) { state.cart.splice(idx, 1); }
+    else { item.qty += delta; }
+    updateCartCount();
+    renderCart();
+  }
+
+  // ---------- NAV / SCROLL ----------
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function bindSectionButtons() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-section]'), function (el) {
+      el.addEventListener('click', function () {
+        scrollToSection(el.dataset.section);
+        closeMobileNav();
+      });
+    });
+  }
+  function onScroll() {
+    var header = $('#header');
+    if (window.scrollY > 60) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }
+
+  // ---------- MOBILE NAV ----------
+  function openMobileNav() {
+    $('#mobileNav').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileNav() {
+    $('#mobileNav').classList.remove('open');
+    if (!$('#configRoot').classList.contains('open') && !$('#cartRoot').classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  // ---------- TOAST ----------
+  var toastTimer = null;
+  function showToast(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2400);
+  }
+
+  // ---------- INIT ----------
+  function init() {
+    renderCategories();
+    renderTabs();
+    renderMenu();
+    updateCartCount();
+    bindSectionButtons();
+
+    $('#cartBtn').addEventListener('click', openCart);
+    $('#menuToggle').addEventListener('click', openMobileNav);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-close-mobile]'), function (el) {
+      el.addEventListener('click', closeMobileNav);
+    });
+    $('#configRoot').querySelector('[data-close-config]').addEventListener('click', closeConfigurator);
+    $('#cartRoot').querySelector('[data-close-cart]').addEventListener('click', closeCart);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeConfigurator(); closeCart(); closeMobileNav(); }
+    });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
